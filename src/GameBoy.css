@@ -1,0 +1,203 @@
+@font-face {
+  font-family: 'Pretendo';
+  src: url("https://manzdev.github.io/twitch-gameboy-css/fonts/pretendo.ttf") format('truetype'),
+       url("https://manzdev.github.io/twitch-gameboy-css/fonts/pretendo.woff") format('woff'),
+       url("https://manzdev.github.io/twitch-gameboy-css/fonts/pretendo.woff2") format('woff2');
+}
+
+body {
+  background: #09cbe4;
+  font-family: 'Pretendo', sans-serif;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  margin: 0;
+}
+
+.gameboy {
+  width: 350px;
+  height: 650px;
+  border-radius: 20px;
+  padding: 20px;
+  background-color: #4f50db;
+  box-shadow: 0px -5px 0px #0d0e51, 0px 5px 0px #3d38b5;
+  text-align: center;
+}
+
+.gameboy-text {
+  font-family: 'Press Start 2P', sans-serif;
+}
+
+.screen-area {
+  background: #23252d;
+  padding: 20px;
+  border-radius: 15px;
+  color: #67879a;
+  box-shadow: inset 0 0 5px #000;
+}
+
+.display {
+  background: #929d97;
+  height: 250px;
+  width: 100%;
+  border-radius: 3px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 10px;
+}
+
+.element-name {
+  font-family: 'Press Start 2P', sans-serif;
+  font-size: 14px;
+  color: white;
+  text-align: center;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  width: 90%;
+  margin: 0 auto;
+}
+
+.element-image {
+  max-width: 80%;
+  max-height: 100px;
+  margin-bottom: 10px;
+}
+
+.element-description {
+  font-size: 14px;
+  color: #333;
+  max-height: 80px;
+  overflow-y: auto;
+  padding: 5px;
+  text-align: justify;
+}
+
+.no-elements {
+  color: #fff;
+}
+
+.controls {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 20px;
+}
+
+.dpad {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: repeat(3, 1fr);
+  width: 90px;
+  height: 90px;
+  background: #565e6a;
+  position: relative;
+}
+
+.dpad div {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 24px;
+  cursor: pointer;
+  color: white;
+}
+
+.dpad .up {
+  grid-column: 2;
+  grid-row: 1;
+}
+
+.dpad .right {
+  grid-column: 3;
+  grid-row: 2;
+}
+
+.dpad .down {
+  grid-column: 2;
+  grid-row: 3;
+}
+
+.dpad .left {
+  grid-column: 1;
+  grid-row: 2;
+}
+
+.btn-circle {
+  position: relative;
+  width: 120px;
+  height: 120px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.btn-circle .btn-e, .btn-circle .btn-a, .btn-circle .btn-d {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  background-color: #d32f2f;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-family: 'Press Start 2P', sans-serif;
+  font-size: 14px;
+  color: white;
+  border: 2px solid #000;
+  box-shadow: 0 4px #000;
+  cursor: pointer;
+  position: absolute;
+}
+
+.btn-circle .btn-e {
+  background-color: #4caf50;
+  top: 0;
+}
+
+.btn-circle .btn-a {
+  background-color: #2196f3;
+  right: 0;
+}
+
+.btn-circle .btn-d {
+  background-color: #d32f2f;
+  bottom: 0;
+}
+
+.btn-circle .btn-e:active, .btn-circle .btn-a:active, .btn-circle .btn-d:active {
+  box-shadow: 0 2px #000;
+  transform: translateY(2px);
+}
+
+.btn-start-select {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 20px;
+}
+
+.btn-select {
+  width: 120px;
+  height: 40px;
+  background-color: #f4b400;
+  border: 2px solid #000;
+  border-radius: 8px;
+  font-family: 'Press Start 2P', sans-serif;
+  font-size: 12px;
+  color: black;
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  box-shadow: 0 4px #000;
+  margin: 5px 0;
+}
+
+.btn-select:active {
+  box-shadow: 0 2px #000;
+  transform: translateY(2px);
+}
