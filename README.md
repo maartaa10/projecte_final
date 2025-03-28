@@ -89,7 +89,7 @@ El frontend està dissenyat per simular una **GameBoy**, amb botons interactius 
 |--------|---------------------|------------------------------------------|
 | GET    | `/votes`            | Obté el total de vots per element       |
 | POST   | `/votes`            | Afegeix un vot a un element             |
-|      |
+
 
 
 ## 💻 Frontend
@@ -118,7 +118,6 @@ src/
 | **Eliminació d'elements**      | Mostra un modal de confirmació abans d'eliminar un element                 |
 | **Valoració amb estrelles**    | Els usuaris poden valorar elements amb un sistema d'estrelles             |
 | **Càlcul de la suma**       | La suma dels vots es calcula i es mostra en temps real                  |
-
 | **Selecció automàtica**        | La categoria es defineix automàticament segons el context (materials/monstres) |
 
 ---
