@@ -22,12 +22,14 @@ function App() {
   const [error, setError] = useState(null);
   const [votes, setVotes] = useState({});
   const [notification, setNotification] = useState("");
+ 
 
   useEffect(() => {
     fetchMaterials();
     fetchMonsters();
-  
-   
+    fetchVotes();
+
+ 
     socket.on("vote:update", ({ id_num, total }) => {
       console.log(`Vot actualitzat per a l'id ${id_num}: ${total}`);
       setVotes((prevVotes) => ({
@@ -40,6 +42,19 @@ function App() {
       socket.off("vote:update");
     };
   }, []);
+
+  const fetchVotes = () => {
+    fetch("http://localhost:3001/votes",{method: "GET"})
+      .then((response) => response.json())
+      .then((data) => {
+        const votesMap = data.reduce((acc, vote) => {
+          acc[vote.id_num] = vote.total / (vote.count || 1);
+          return acc;
+        }, {});
+        setVotes(votesMap);
+      })
+      .catch((error) => console.error("Error obtenint els vots:", error));
+  };
 
   const fetchMaterials = () => {
     getMaterials()
@@ -92,9 +107,23 @@ function App() {
   };
 
   const handleVote = (id_num, value) => {
-    socket.emit("vote", { id_num, value });
-    setNotification(`El material amb ID ${id_num} ha rebut un vot de ${value} ⭐!`);
-    setTimeout(() => setNotification(""), 3000);
+    fetch("http://localhost:3001/votes", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ id_num, value,user_id: crypto.randomUUID() }),
+    })
+      .then((response) => response.json())
+      .then(() => {
+  
+        setVotes((prevVotes) => ({
+          ...prevVotes,
+          [id_num]: (prevVotes[id_num] || 0) + value,
+        }));
+  
+        setNotification(`El material amb ID ${id_num} ha rebut un vot de ${value} ⭐!`);
+        setTimeout(() => setNotification(""), 3000);
+      })
+      .catch((error) => console.error("Error enviant el vot:", error));
   };
 
   const handleNext = () => {
@@ -131,6 +160,7 @@ function App() {
             element={currentElement}
             onSave={handleSave}
             onClose={() => setIsModalOpen(false)}
+            category={view}
           />
         )}
         {isDeleteModalOpen && (
