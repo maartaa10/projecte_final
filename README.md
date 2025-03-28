@@ -1,70 +1,202 @@
-# Getting Started with Create React App
+# Zelda BOTW API & Frontend (Materials i Monstres)
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Aquest projecte inclou una **API RESTful** i un **frontend interactiu** que simula una **GameBoy** per gestionar informació de **materials** i **monstres** del joc *The Legend of Zelda: Breath of the Wild*. També inclou funcionalitats avançades com la valoració amb estrelles, la selecció automàtica de categories i la gestió de vots.
 
-## Available Scripts
+---
 
-In the project directory, you can run:
+## 🎮 Com utilitzar la interfície (GameBoy)
 
-### `npm start`
+El frontend està dissenyat per simular una **GameBoy**, amb botons interactius que permeten navegar i gestionar els elements. A continuació es detallen els botons i les seves funcions:
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+| Botó       | Funció                                                                 |
+|------------|------------------------------------------------------------------------|
+| **▲ / ▼**  | Navegar entre els elements (anterior/següent).                         |
+| **◀ / ▶**  | Navegar entre els elements (anterior/següent).                         |
+| **E**      | Editar l'element seleccionat.                                          |
+| **A**      | Afegir un nou element (material o monstre, segons la vista actual).    |
+| **D**      | Eliminar l'element seleccionat (mostra un modal de confirmació).       |
+| **Materials** | Canviar a la vista de materials.                                    |
+| **Monsters**  | Canviar a la vista de monstres.                                     |
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+---
 
-### `npm test`
+## 📁 Contingut
+- [Zelda BOTW API \& Frontend (Materials i Monstres)](#zelda-botw-api--frontend-materials-i-monstres)
+  - [🎮 Com utilitzar la interfície (GameBoy)](#-com-utilitzar-la-interfície-gameboy)
+  - [📁 Contingut](#-contingut)
+  - [✨ Característiques](#-característiques)
+  - [📚 Backend (API)](#-backend-api)
+    - [Endpoints de l'API](#endpoints-de-lapi)
+      - [Materials](#materials)
+      - [Monstres](#monstres)
+      - [Vots](#vots)
+  - [💻 Frontend](#-frontend)
+    - [Estructura del projecte](#estructura-del-projecte)
+    - [Funcionalitats del frontend](#funcionalitats-del-frontend)
+  - [🔧 Millores](#-millores)
+    - [1. **Valoració amb estrelles**](#1-valoració-amb-estrelles)
+    - [2. **Càlcul de la suma**](#2-càlcul-de-la-suma)
+    - [3. **Selecció automàtica de categories**](#3-selecció-automàtica-de-categories)
+  - [🐳 Instal·lació amb Docker](#-installació-amb-docker)
+    - [🔧 Requisits](#-requisits)
+    - [📖 Instruccions](#-instruccions)
+  - [💻 Instal·lació en local](#-installació-en-local)
+    - [🔧 Requisits](#-requisits-1)
+    - [📖 Instruccions](#-instruccions-1)
+  - [📝 Notes](#-notes)
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+---
 
-### `npm run build`
+## ✨ Característiques
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+| Característica                  | Descripció                                                                 |
+|---------------------------------|-----------------------------------------------------------------------------|
+| **Base de dades**               | MongoDB                                                                    |
+| **CRUD complet**                | Per a materials i monstres                                                 |
+| **Frontend interactiu**         | React.js amb funcionalitats avançades                                      |
+| **Valoració amb estrelles**     | Permet als usuaris valorar materials i monstres                            |
+| **Gestió de vots**              | Inclou càlcul de la suma i reinici dels vots                            |
+| **Selecció automàtica**         | La categoria es defineix automàticament segons el context                  |
+| **Backend**                     | Node.js + Express                                                          |
+| **Documentació interactiva**    | Swagger disponible a [http://localhost:3001/api-docs](http://localhost:3001/api-docs) |
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+---
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+## 📚 Backend (API)
 
-### `npm run eject`
+### Endpoints de l'API
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+#### Materials
+| Mètode | Endpoint           | Descripció                              |
+|--------|---------------------|------------------------------------------|
+| GET    | `/materials`        | Obté tots els materials                 |
+| GET    | `/materials/:id`    | Obté un material específic              |
+| POST   | `/materials`        | Crea un nou material                    |
+| PUT    | `/materials/:id`    | Actualitza un material existent         |
+| DELETE | `/materials/:id`    | Elimina un material                     |
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+#### Monstres
+| Mètode | Endpoint           | Descripció                              |
+|--------|---------------------|------------------------------------------|
+| GET    | `/monsters`         | Obté tots els monstres                  |
+| GET    | `/monsters/:id`     | Obté un monstre específic               |
+| POST   | `/monsters`         | Crea un nou monstre                     |
+| PUT    | `/monsters/:id`     | Actualitza un monstre existent          |
+| DELETE | `/monsters/:id`     | Elimina un monstre                      |
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+#### Vots
+| Mètode | Endpoint           | Descripció                              |
+|--------|---------------------|------------------------------------------|
+| GET    | `/votes`            | Obté el total de vots per element       |
+| POST   | `/votes`            | Afegeix un vot a un element             |
+| DELETE | `/votes/:id_num`    | Reinicia els vots d'un element          |
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
 
-## Learn More
+## 💻 Frontend
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+### Estructura del projecte
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+El frontend està desenvolupat amb **React.js** i té la següent estructura:
 
-### Code Splitting
+```
+src/
+├── api.js                # Funcions per interactuar amb l'API
+├── App.js                # Component principal de l'aplicació
+├── ElementModal.jsx      # Modal per crear/editar elements
+├── DeleteModal.jsx       # Modal per confirmar eliminacions
+├── ImageModal.jsx        # Modal per mostrar imatges i gestionar vots
+├── GameBoy.jsx           # Component visual inspirat en una GameBoy
+├── styles.css            # Estils globals
+```
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+### Funcionalitats del frontend
 
-### Analyzing the Bundle Size
+| Funcionalitat                  | Descripció                                                                 |
+|--------------------------------|-----------------------------------------------------------------------------|
+| **Llistat d'elements**         | Mostra materials i monstres en targetes                                    |
+| **Creació/edició d'elements**  | Permet afegir o editar materials i monstres mitjançant un modal            |
+| **Eliminació d'elements**      | Mostra un modal de confirmació abans d'eliminar un element                 |
+| **Valoració amb estrelles**    | Els usuaris poden valorar elements amb un sistema d'estrelles             |
+| **Càlcul de la suma**       | La suma dels vots es calcula i es mostra en temps real                  |
+| **Reinici dels vots**          | Botó per reiniciar els vots d'un element específic                         |
+| **Selecció automàtica**        | La categoria es defineix automàticament segons el context (materials/monstres) |
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+---
 
-### Making a Progressive Web App
+## 🔧 Millores
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+### 1. **Valoració amb estrelles**
+- **Descripció**: Els usuaris poden valorar materials i monstres amb un sistema d'estrelles (1 a 5).
+- **Implementació**:
+  - Els vots es guarden al backend i es mostren al frontend.
+  - Es calcula el **total** de vots per a cada element.
 
-### Advanced Configuration
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+### 2. **Càlcul de la suma**
+- **Descripció**: La suma dels vots es calcula al frontend per representar millor les valoracions.
+- **Implementació**:
+  - Els vots es processen en un array, s'ordenen i es calcula la suma.
 
-### Deployment
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
 
-### `npm run build` fails to minify
+### 3. **Selecció automàtica de categories**
+- **Descripció**: Quan es crea un nou element, la categoria es defineix automàticament segons si l'usuari està a la vista de materials o monstres.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+
+## 🐳 Instal·lació amb Docker
+
+### 🔧 Requisits
+- [Docker](https://www.docker.com/)
+- [Docker Compose](https://docs.docker.com/compose/)
+
+### 📖 Instruccions
+
+1. Clona el repositori:
+   ```bash
+   git clone https://github.com/usuari/zelda-botw-api.git
+   cd zelda-botw-api
+   ```
+
+2. Executa el projecte amb Docker Compose:
+   ```bash
+   docker compose up --build
+   ```
+
+3. Accedeix a l'API a [http://localhost:3001](http://localhost:3001).
+
+---
+
+## 💻 Instal·lació en local
+
+### 🔧 Requisits
+- [Node.js](https://nodejs.org/) (versió 14 o superior)
+- [MongoDB](https://www.mongodb.com/)
+
+### 📖 Instruccions
+
+1. Clona el repositori:
+   ```bash
+   git clone https://github.com/usuari/zelda-botw-api.git
+   cd zelda-botw-api
+   ```
+
+2. Instal·la les dependències:
+   ```bash
+   npm install
+   ```
+
+3. Inicia el servidor:
+   ```bash
+   npm start
+   ```
+
+4. Accedeix a l'API a [http://localhost:3001](http://localhost:3001).
+
+
+
+## 📝 Notes
+
+- Pots fer servir Swagger a [http://localhost:3001/api-docs](http://localhost:3001/api-docs) per explorar i provar els endpoints.
+- Les dades de materials i monstres estan basades en l’API original: [https://botw-compendium.herokuapp.com](https://botw-compendium.herokuapp.com).
+
+
