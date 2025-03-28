@@ -55,7 +55,7 @@ El frontend està dissenyat per simular una **GameBoy**, amb botons interactius 
 | **CRUD complet**                | Per a materials i monstres                                                 |
 | **Frontend interactiu**         | React.js amb funcionalitats avançades                                      |
 | **Valoració amb estrelles**     | Permet als usuaris valorar materials i monstres                            |
-| **Gestió de vots**              | Inclou càlcul de la suma i reinici dels vots                            |
+| **Gestió de vots**              | Inclou càlcul de la suma                          |
 | **Selecció automàtica**         | La categoria es defineix automàticament segons el context                  |
 | **Backend**                     | Node.js + Express                                                          |
 | **Documentació interactiva**    | Swagger disponible a [http://localhost:3001/api-docs](http://localhost:3001/api-docs) |
@@ -89,7 +89,7 @@ El frontend està dissenyat per simular una **GameBoy**, amb botons interactius 
 |--------|---------------------|------------------------------------------|
 | GET    | `/votes`            | Obté el total de vots per element       |
 | POST   | `/votes`            | Afegeix un vot a un element             |
-| DELETE | `/votes/:id_num`    | Reinicia els vots d'un element          |
+|      |
 
 
 ## 💻 Frontend
@@ -118,7 +118,7 @@ src/
 | **Eliminació d'elements**      | Mostra un modal de confirmació abans d'eliminar un element                 |
 | **Valoració amb estrelles**    | Els usuaris poden valorar elements amb un sistema d'estrelles             |
 | **Càlcul de la suma**       | La suma dels vots es calcula i es mostra en temps real                  |
-| **Reinici dels vots**          | Botó per reiniciar els vots d'un element específic                         |
+
 | **Selecció automàtica**        | La categoria es defineix automàticament segons el context (materials/monstres) |
 
 ---
