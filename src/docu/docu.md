@@ -25,7 +25,6 @@ Aquest projecte inclou una **API RESTful** i un **frontend interactiu** que simu
     - [1. **Valoració amb estrelles**](#1-valoració-amb-estrelles)
     - [2. **Càlcul de la suma**](#2-càlcul-de-la-suma)
     - [3. **Selecció automàtica de categories**](#3-selecció-automàtica-de-categories)
-    - [4. **Camps específics per a materials i monstres**](#4-camps-específics-per-a-materials-i-monstres)
   - [🐳 Instal·lació amb Docker](#-installació-amb-docker)
     - [🔧 Requisits](#-requisits)
     - [📖 Instruccions](#-instruccions)
@@ -186,13 +185,6 @@ Quan es detecta un error en el formulari:
 
 ### 3. **Selecció automàtica de categories**
 - **Descripció**: Quan es crea un nou element, la categoria es defineix automàticament segons si l'usuari està a la vista de materials o monstres.
-
-### 4. **Camps específics per a materials i monstres**
-- **Materials**:
-  - **Cooking Effect**: Permet especificar l'efecte de cuina del material.
-  - **Hearts Recovered**: Permet indicar el nombre de cors recuperats pel material. Ha de ser un número positiu.
-- **Monstres**:
-  - **Drops**: Permet especificar els objectes que deixa caure el monstre. Es poden afegir, editar i eliminar múltiples drops.
 
 ---
 
