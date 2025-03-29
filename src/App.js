@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import { getMaterials, createMaterial, updateMaterial, deleteMaterial, getMonsters, createMonster, updateMonster, deleteMonster } from './api';
 import './styles.css'; 
-import GameBoy from './GameBoy';
-import ElementModal from './ElementModal';
-import DeleteModal from './DeleteModal';
-import ImageModal from './ImageModal';
+import GameBoy from './components/GameBoy';
+import ElementModal from './components/ElementModal';
+import DeleteModal from './components/DeleteModal';
+import ImageModal from './components/ImageModal';
 import ErrorBoundary from './ErrorBoundary';
 import io from 'socket.io-client';
 

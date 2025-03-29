@@ -112,10 +112,16 @@ El frontend està desenvolupat amb **React.js** i té la següent estructura:
 src/
 ├── api.js                # Funcions per interactuar amb l'API
 ├── App.js                # Component principal de l'aplicació
-├── ElementModal.jsx      # Modal per crear/editar elements
-├── DeleteModal.jsx       # Modal per confirmar eliminacions
-├── ImageModal.jsx        # Modal per mostrar imatges i gestionar vots
-├── GameBoy.jsx           # Component visual inspirat en una GameBoy
+├── components/           # Carpeta que conté tots els components React
+│   ├── DeleteModal.jsx   # Modal per confirmar eliminacions
+│   ├── DeleteModal.css   # Estils del modal d'eliminació
+│   ├── ElementList.jsx   # Llistat d'elements
+│   ├── ElementModal.jsx  # Modal per crear/editar elements
+│   ├── ElementModal.css  # Estils del modal d'elements
+│   ├── GameBoy.jsx       # Component visual inspirat en una GameBoy
+│   ├── GameBoy.css       # Estils del component GameBoy
+│   ├── ImageModal.jsx    # Modal per mostrar imatges i gestionar vots
+│   ├── ImageModal.css    # Estils del modal d'imatges
 ├── styles.css            # Estils globals
 ```
 
