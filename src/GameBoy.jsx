@@ -5,22 +5,40 @@ function GameBoy({ element, votes = 0, onNext, onPrev, onEdit, onDelete, onAdd, 
   return (
     <div className="gameboy">
       <div className="screen-area">
-        <div className="display">
-          {element ? (
-            <div id="screen">
-              <h2 className="element-name gameboy-text">{element.name}</h2>
-              <img
-                className="element-image"
-                src={element.image}
-                alt={element.name}
-                onClick={onImageClick}
-              />
-              <p className="element-description gameboy-text">{element.description}</p>
-         {/*      <p className="gameboy-text">Valoració mitjana: {votes.toFixed(1)} ⭐</p> */}
-            </div>
-          ) : (
-            <p className="gameboy-text">No hi ha elements disponibles</p>
-          )}
+        <div className="screen">
+          <div className="display">
+            {element ? (
+              <div id="screen">
+            
+                <div className="upper-section">
+                  <h2 className="element-name gameboy-text">{element.name}</h2>
+                  <img
+                    className="element-image"
+                    src={element.image}
+                    alt={element.name}
+                    onClick={onImageClick}
+                  />
+                  <p className="element-description gameboy-text">{element.description}</p>
+                </div>
+
+                <div className="lower-section">
+                  {element.hearts_recovered !== undefined ? (
+                    <p className="hearts-recovered gameboy-text">
+                      <strong>Hearts Recovered:</strong> {element.hearts_recovered || 0}
+                    </p>
+                  ) : (
+                    <div className="drops-container">
+                      <p className="drops gameboy-text">
+                      <strong>Drop:</strong> {element.drops?.[0] || "Sense drop"}
+                      </p>
+                    </div>
+                  )}
+                </div>
+              </div>
+            ) : (
+              <p className="gameboy-text">No hi ha elements disponibles</p>
+            )}
+          </div>
         </div>
       </div>
       <div className="controls">

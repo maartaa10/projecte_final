@@ -3,6 +3,38 @@
 Aquest projecte inclou una **API RESTful** i un **frontend interactiu** que simula una **GameBoy** per gestionar informació de **materials** i **monstres** del joc *The Legend of Zelda: Breath of the Wild*. També inclou funcionalitats avançades com la valoració amb estrelles, la selecció automàtica de categories i la gestió de vots.
 
 ---
+## 📁 Contingut
+- [Zelda BOTW API \& Frontend (Materials i Monstres)](#zelda-botw-api--frontend-materials-i-monstres)
+  - [📁 Contingut](#-contingut)
+  - [🎮 Com utilitzar la interfície (GameBoy)](#-com-utilitzar-la-interfície-gameboy)
+  - [✨ Característiques](#-característiques)
+  - [📚 Backend (API)](#-backend-api)
+    - [Endpoints de l'API](#endpoints-de-lapi)
+      - [Materials](#materials)
+      - [Monstres](#monstres)
+      - [Vots](#vots)
+  - [💻 Frontend](#-frontend)
+    - [Estructura del projecte](#estructura-del-projecte)
+    - [Funcionalitats del frontend](#funcionalitats-del-frontend)
+  - [✨ Validacions](#-validacions)
+    - [Validacions generals](#validacions-generals)
+    - [Validacions específiques per a **materials**](#validacions-específiques-per-a-materials)
+    - [Validacions específiques per a **monstres**](#validacions-específiques-per-a-monstres)
+    - [Comportament en cas d'errors](#comportament-en-cas-derrors)
+  - [🔧 Millores](#-millores)
+    - [1. **Valoració amb estrelles**](#1-valoració-amb-estrelles)
+    - [2. **Càlcul de la suma**](#2-càlcul-de-la-suma)
+    - [3. **Selecció automàtica de categories**](#3-selecció-automàtica-de-categories)
+    - [4. **Camps específics per a materials i monstres**](#4-camps-específics-per-a-materials-i-monstres)
+  - [🐳 Instal·lació amb Docker](#-installació-amb-docker)
+    - [🔧 Requisits](#-requisits)
+    - [📖 Instruccions](#-instruccions)
+    - [📖](#)
+  - [💻 Instal·lació en local](#-installació-en-local)
+    - [🔧 Requisits](#-requisits-1)
+    - [📖 Instruccions](#-instruccions-1)
+  - [📝 Notes](#-notes)
+
 
 ## 🎮 Com utilitzar la interfície (GameBoy)
 
@@ -20,30 +52,7 @@ El frontend està dissenyat per simular una **GameBoy**, amb botons interactius 
 
 ---
 
-## 📁 Contingut
-- [Zelda BOTW API \& Frontend (Materials i Monstres)](#zelda-botw-api--frontend-materials-i-monstres)
-  - [🎮 Com utilitzar la interfície (GameBoy)](#-com-utilitzar-la-interfície-gameboy)
-  - [📁 Contingut](#-contingut)
-  - [✨ Característiques](#-característiques)
-  - [📚 Backend (API)](#-backend-api)
-    - [Endpoints de l'API](#endpoints-de-lapi)
-      - [Materials](#materials)
-      - [Monstres](#monstres)
-      - [Vots](#vots)
-  - [💻 Frontend](#-frontend)
-    - [Estructura del projecte](#estructura-del-projecte)
-    - [Funcionalitats del frontend](#funcionalitats-del-frontend)
-  - [🔧 Millores](#-millores)
-    - [1. **Valoració amb estrelles**](#1-valoració-amb-estrelles)
-    - [2. **Càlcul de la suma**](#2-càlcul-de-la-suma)
-    - [3. **Selecció automàtica de categories**](#3-selecció-automàtica-de-categories)
-  - [🐳 Instal·lació amb Docker](#-installació-amb-docker)
-    - [🔧 Requisits](#-requisits)
-    - [📖 Instruccions](#-instruccions)
-  - [💻 Instal·lació en local](#-installació-en-local)
-    - [🔧 Requisits](#-requisits-1)
-    - [📖 Instruccions](#-instruccions-1)
-  - [📝 Notes](#-notes)
+
 
 ---
 
@@ -55,8 +64,9 @@ El frontend està dissenyat per simular una **GameBoy**, amb botons interactius 
 | **CRUD complet**                | Per a materials i monstres                                                 |
 | **Frontend interactiu**         | React.js amb funcionalitats avançades                                      |
 | **Valoració amb estrelles**     | Permet als usuaris valorar materials i monstres                            |
-| **Gestió de vots**              | Inclou càlcul de la suma                          |
+| **Gestió de vots**              | Inclou càlcul de la suma                                                   |
 | **Selecció automàtica**         | La categoria es defineix automàticament segons el context                  |
+| **Camps específics**            | Mostra camps diferents segons si és un material o un monstre               |
 | **Backend**                     | Node.js + Express                                                          |
 | **Documentació interactiva**    | Swagger disponible a [http://localhost:3001/api-docs](http://localhost:3001/api-docs) |
 
@@ -90,7 +100,7 @@ El frontend està dissenyat per simular una **GameBoy**, amb botons interactius 
 | GET    | `/votes`            | Obté el total de vots per element       |
 | POST   | `/votes`            | Afegeix un vot a un element             |
 
-
+---
 
 ## 💻 Frontend
 
@@ -117,11 +127,46 @@ src/
 | **Creació/edició d'elements**  | Permet afegir o editar materials i monstres mitjançant un modal            |
 | **Eliminació d'elements**      | Mostra un modal de confirmació abans d'eliminar un element                 |
 | **Valoració amb estrelles**    | Els usuaris poden valorar elements amb un sistema d'estrelles             |
-| **Càlcul de la suma**       | La suma dels vots es calcula i es mostra en temps real                  |
+| **Càlcul de la suma**          | La suma dels vots es calcula i es mostra en temps real                     |
 | **Selecció automàtica**        | La categoria es defineix automàticament segons el context (materials/monstres) |
+| **Camps específics**           | Mostra camps diferents segons si és un material o un monstre               |
 
 ---
 
+## ✨ Validacions
+
+El projecte inclou diverses validacions per assegurar que les dades introduïdes pels usuaris siguin correctes abans de guardar-les. A continuació es detallen les validacions aplicades:
+
+### Validacions generals
+
+| **Camp**       | **Validació**                                                                 | **Missatge d'error**                                   |
+|----------------|-------------------------------------------------------------------------------|-------------------------------------------------------|
+| **Nom**        | Ha de tenir almenys **3 caràcters** després d'eliminar els espais inicials i finals. Es permeten espais intermedis (exemple: `"Nom Exemple"`). | `"El nom ha de tenir almenys 3 caràcters."`          |
+| **Descripció** | Ha de tenir almenys **3 caràcters** després d'eliminar els espais inicials i finals. Es permeten espais intermedis (exemple: `"Aquesta és una descripció."`). | `"La descripció ha de tenir almenys 3 caràcters."`   |
+
+### Validacions específiques per a **materials**
+
+| **Camp**            | **Validació**                                      | **Missatge d'error**                                   |
+|---------------------|----------------------------------------------------|-------------------------------------------------------|
+| **Hearts Recovered** | Ha de ser un **número positiu**.                   | `"Els cors recuperats han de ser un número positiu."` |
+|          |
+
+### Validacions específiques per a **monstres**
+
+| **Camp**  | **Validació**                                                                 | **Missatge d'error**                                   |
+|-----------|-------------------------------------------------------------------------------|-------------------------------------------------------|
+| **Drops** | Ha d'existir almenys **un drop**. Cada drop ha de tenir almenys **1 caràcter** (no pot estar buit). | `"Els monstres han de tenir almenys un drop."` <br> `"Els drops no poden estar buits."` |
+
+
+---
+
+### Comportament en cas d'errors
+
+Quan es detecta un error en el formulari:
+- Es mostra un missatge d'error en **color vermell** sota el camp corresponent.
+- L'usuari no pot guardar l'element fins que es resolguin tots els errors.
+
+---
 ## 🔧 Millores
 
 ### 1. **Valoració amb estrelles**
@@ -130,17 +175,22 @@ src/
   - Els vots es guarden al backend i es mostren al frontend.
   - Es calcula el **total** de vots per a cada element.
 
-
 ### 2. **Càlcul de la suma**
 - **Descripció**: La suma dels vots es calcula al frontend per representar millor les valoracions.
 - **Implementació**:
   - Els vots es processen en un array, s'ordenen i es calcula la suma.
 
-
-
 ### 3. **Selecció automàtica de categories**
 - **Descripció**: Quan es crea un nou element, la categoria es defineix automàticament segons si l'usuari està a la vista de materials o monstres.
 
+### 4. **Camps específics per a materials i monstres**
+- **Materials**:
+  - **Cooking Effect**: Permet especificar l'efecte de cuina del material.
+  - **Hearts Recovered**: Permet indicar el nombre de cors recuperats pel material. Ha de ser un número positiu.
+- **Monstres**:
+  - **Drops**: Permet especificar els objectes que deixa caure el monstre. Es poden afegir, editar i eliminar múltiples drops.
+
+---
 
 ## 🐳 Instal·lació amb Docker
 
@@ -164,6 +214,8 @@ src/
 3. Accedeix a l'API a [http://localhost:3001](http://localhost:3001).
 
 ---
+
+### 📖
 
 ## 💻 Instal·lació en local
 
