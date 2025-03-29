@@ -9,8 +9,8 @@ function ElementList({ elements, onEdit, onDelete, setIsModalOpen, setIsDeleteMo
             <img src={element.image} className="card-img-top" alt={element.name} />
             <div className="card-body">
               <h5 className="card-title">{element.name}</h5>
-              <button className="btn btn-primary" onClick={() => { onEdit(element); setIsModalOpen(true); }}>Edit</button>
-              <button className="btn btn-danger" onClick={() => { onDelete(element); setIsDeleteModalOpen(true); }}>Delete</button>
+              <button className="btn btn-primary" onClick={() => { onEdit(element); setIsModalOpen(true); }}>Editar</button>
+              <button className="btn btn-danger" onClick={() => { onDelete(element); setIsDeleteModalOpen(true); }}>Eliminar</button>
             </div>
           </div>
         </div>

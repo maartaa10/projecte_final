@@ -125,7 +125,7 @@ function App() {
       })
       .catch((error) => console.error("Error enviant el vot:", error));
   };
-
+ 
   const handleNext = () => {
     setCurrentIndex((prevIndex) => (prevIndex + 1) % (view === 'materials' ? materials.length : monsters.length));
   };
