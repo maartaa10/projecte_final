@@ -27,7 +27,6 @@ Aquest projecte inclou una **API RESTful** i un **frontend interactiu** que simu
   - [🐳 Instal·lació amb Docker](#-installació-amb-docker)
     - [🔧 Requisits](#-requisits)
     - [📖 Instruccions](#-instruccions)
-    - [📖](#)
   - [💻 Instal·lació en local](#-installació-en-local)
     - [🔧 Requisits](#-requisits-1)
     - [📖 Instruccions](#-instruccions-1)
@@ -215,8 +214,6 @@ Quan es detecta un error en el formulari:
 3. Accedeix a l'API a [http://localhost:3001](http://localhost:3001).
 
 ---
-
-### 📖
 
 ## 💻 Instal·lació en local
 
