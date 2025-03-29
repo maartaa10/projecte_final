@@ -16,13 +16,14 @@ Aquest projecte inclou una **API RESTful** i un **frontend interactiu** que simu
   - [💻 Frontend](#-frontend)
     - [Estructura del projecte](#estructura-del-projecte)
     - [Funcionalitats del frontend](#funcionalitats-del-frontend)
+  - [| **Estadístiques Generals**     | Mostra estadístiques generals en forma de gràfics dins d'una modal.           |](#-estadístiques-generals------mostra-estadístiques-generals-en-forma-de-gràfics-dins-duna-modal-----------)
   - [✨ Validacions](#-validacions)
     - [Validacions generals](#validacions-generals)
     - [Validacions específiques per a **materials**](#validacions-específiques-per-a-materials)
     - [Validacions específiques per a **monstres**](#validacions-específiques-per-a-monstres)
     - [Comportament en cas d'errors](#comportament-en-cas-derrors)
   - [🔧 Millores](#-millores)
-  - [| **Selecció automàtica de categories** | Quan es crea un nou element, la categoria es defineix automàticament segons si l'usuari està a la vista de materials o monstres. | - La categoria es selecciona automàticament en funció del context (materials o monstres).            |](#-selecció-automàtica-de-categories--quan-es-crea-un-nou-element-la-categoria-es-defineix-automàticament-segons-si-lusuari-està-a-la-vista-de-materials-o-monstres----la-categoria-es-selecciona-automàticament-en-funció-del-context-materials-o-monstres------------)
+  - [| **Gràfic de vots per dia**     | Mostra el nombre de vots generats per dia durant els últims 7 dies.              | - Es generen dades fakes per als últims 7 dies.  - L'eix X mostra les dates i l'eix Y els vots generats.   |](#-gràfic-de-vots-per-dia------mostra-el-nombre-de-vots-generats-per-dia-durant-els-últims-7-dies-----------------es-generen-dades-fakes-per-als-últims-7-dies----leix-x-mostra-les-dates-i-leix-y-els-vots-generats---)
   - [🐳 Instal·lació amb Docker](#-installació-amb-docker)
     - [🔧 Requisits](#-requisits)
     - [📖 Instruccions](#-instruccions)
@@ -109,15 +110,29 @@ El frontend està desenvolupat amb **React.js** i té la següent estructura:
 src/
 ├── api.js                # Funcions per interactuar amb l'API
 ├── App.js                # Component principal de l'aplicació
+├── App.css               # Estils globals per al component principal
+
 ├── components/           # Carpeta que conté tots els components React
-│   ├── ElementModal.jsx  # Modal per crear/editar elements
+│   ├── DeleteModal.css   # Estils per a la modal d'eliminació
 │   ├── DeleteModal.jsx   # Modal per confirmar eliminacions
-│   ├── ImageModal.jsx    # Modal per mostrar imatges i gestionar vots
+│   ├── ElementList.jsx   # Llista d'elements (materials o monstres)
+│   ├── ElementModal.css  # Estils per a la modal d'edició/creació d'elements
+│   ├── ElementModal.jsx  # Modal per crear/editar elements
+│   ├── GameBoy.css       # Estils per al component visual de la GameBoy
 │   ├── GameBoy.jsx       # Component visual inspirat en una GameBoy
-├── styles.css            # Estils globals
+│   ├── Grafics.css       # Estils per als gràfics
+│   ├── GraphModal.jsx    # Modal per mostrar gràfics
+│   ├── ImageModal.css    # Estils per a la modal d'imatges
+│   ├── ImageModal.jsx    # Modal per mostrar imatges i gestionar vots
+│   ├── Statistics.jsx    # Component per mostrar estadístiques generals
+│   ├── VotesPerDayGraph.jsx # Gràfic per mostrar els vots per dia
+│   ├── VotesPerElementGraph.jsx  # Gràfic per mostrar els vots per element
 ├── docu/                 # Carpeta que conté la documentació
 │   ├── docu.pdf          # Documentació en format PDF
-    ├── docu.md          # Documentació en format md
+│   ├── docu.md           # Documentació en format Markdown
+├── index.css             # Estils globals
+├── index.js              # Punt d'entrada de l'aplicació
+├── styles.css            # Estils globals 
 ```
 
 ### Funcionalitats del frontend
@@ -131,7 +146,7 @@ src/
 | **Càlcul de la suma**          | La suma dels vots es calcula i es mostra en temps real                     |
 | **Selecció automàtica**        | La categoria es defineix automàticament segons el context (materials/monstres) |
 | **Camps específics**           | Mostra camps diferents segons si és un material o un monstre               |
-
+| **Estadístiques Generals**     | Mostra estadístiques generals en forma de gràfics dins d'una modal.           |
 ---
 
 ## ✨ Validacions
@@ -150,7 +165,6 @@ El projecte inclou diverses validacions per assegurar que les dades introduïdes
 | **Camp**            | **Validació**                                      | **Missatge d'error**                                   |
 |---------------------|----------------------------------------------------|-------------------------------------------------------|
 | **Hearts Recovered** | Ha de ser un **número positiu**.                   | `"Els cors recuperats han de ser un número positiu."` |
-|          |
 
 ### Validacions específiques per a **monstres**
 
@@ -170,13 +184,13 @@ Quan es detecta un error en el formulari:
 ---
 ## 🔧 Millores
 
-Aquí tens les millores en format de taula:
-
 | **Nom**                        | **Descripció**                                                                 | **Implementació**                                                                                     |
 |--------------------------------|---------------------------------------------------------------------------------|-------------------------------------------------------------------------------------------------------|
 | **Valoració amb estrelles**    | Els usuaris poden valorar materials i monstres amb un sistema d'estrelles (1 a 5). | - Els vots es guarden al backend i es mostren al frontend. <br> - Es calcula el **total** de vots per a cada element. |
 | **Càlcul de la suma**          | La suma dels vots es calcula al frontend per representar millor les valoracions. | - Els vots es processen en un array, s'ordenen i es calcula la suma.                                 |
 | **Selecció automàtica de categories** | Quan es crea un nou element, la categoria es defineix automàticament segons si l'usuari està a la vista de materials o monstres. | - La categoria es selecciona automàticament en funció del context (materials o monstres).            |
+| **Gràfic de vots per element** | Mostra el nombre de vots totals per a cada element (materials i monsters).       | - Es fa una crida a l'API per obtenir els vots, materials i monsters. <br> - Només es mostren els elements amb almenys 1 vot. <br> - Els noms dels elements es mostren a l'eix X i els vots totals a l'eix Y. |
+| **Gràfic de vots per dia**     | Mostra el nombre de vots generats per dia durant els últims 7 dies.              | - Es generen dades fakes per als últims 7 dies. <br> - L'eix X mostra les dates i l'eix Y els vots generats. <br>  |
 ---
 
 ## 🐳 Instal·lació amb Docker
