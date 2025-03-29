@@ -22,9 +22,7 @@ Aquest projecte inclou una **API RESTful** i un **frontend interactiu** que simu
     - [Validacions específiques per a **monstres**](#validacions-específiques-per-a-monstres)
     - [Comportament en cas d'errors](#comportament-en-cas-derrors)
   - [🔧 Millores](#-millores)
-    - [1. **Valoració amb estrelles**](#1-valoració-amb-estrelles)
-    - [2. **Càlcul de la suma**](#2-càlcul-de-la-suma)
-    - [3. **Selecció automàtica de categories**](#3-selecció-automàtica-de-categories)
+  - [| **Selecció automàtica de categories** | Quan es crea un nou element, la categoria es defineix automàticament segons si l'usuari està a la vista de materials o monstres. | - La categoria es selecciona automàticament en funció del context (materials o monstres).            |](#-selecció-automàtica-de-categories--quan-es-crea-un-nou-element-la-categoria-es-defineix-automàticament-segons-si-lusuari-està-a-la-vista-de-materials-o-monstres----la-categoria-es-selecciona-automàticament-en-funció-del-context-materials-o-monstres------------)
   - [🐳 Instal·lació amb Docker](#-installació-amb-docker)
     - [🔧 Requisits](#-requisits)
     - [📖 Instruccions](#-instruccions)
@@ -172,20 +170,13 @@ Quan es detecta un error en el formulari:
 ---
 ## 🔧 Millores
 
-### 1. **Valoració amb estrelles**
-- **Descripció**: Els usuaris poden valorar materials i monstres amb un sistema d'estrelles (1 a 5).
-- **Implementació**:
-  - Els vots es guarden al backend i es mostren al frontend.
-  - Es calcula el **total** de vots per a cada element.
+Aquí tens les millores en format de taula:
 
-### 2. **Càlcul de la suma**
-- **Descripció**: La suma dels vots es calcula al frontend per representar millor les valoracions.
-- **Implementació**:
-  - Els vots es processen en un array, s'ordenen i es calcula la suma.
-
-### 3. **Selecció automàtica de categories**
-- **Descripció**: Quan es crea un nou element, la categoria es defineix automàticament segons si l'usuari està a la vista de materials o monstres.
-
+| **Nom**                        | **Descripció**                                                                 | **Implementació**                                                                                     |
+|--------------------------------|---------------------------------------------------------------------------------|-------------------------------------------------------------------------------------------------------|
+| **Valoració amb estrelles**    | Els usuaris poden valorar materials i monstres amb un sistema d'estrelles (1 a 5). | - Els vots es guarden al backend i es mostren al frontend. <br> - Es calcula el **total** de vots per a cada element. |
+| **Càlcul de la suma**          | La suma dels vots es calcula al frontend per representar millor les valoracions. | - Els vots es processen en un array, s'ordenen i es calcula la suma.                                 |
+| **Selecció automàtica de categories** | Quan es crea un nou element, la categoria es defineix automàticament segons si l'usuari està a la vista de materials o monstres. | - La categoria es selecciona automàticament en funció del context (materials o monstres).            |
 ---
 
 ## 🐳 Instal·lació amb Docker
