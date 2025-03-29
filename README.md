@@ -1,6 +1,6 @@
 # Zelda BOTW API & Frontend (Materials i Monstres)
 
-Aquest projecte inclou una **API RESTful** i un **frontend interactiu** que simula una **GameBoy** per gestionar informació de **materials** i **monstres** del joc *The Legend of Zelda: Breath of the Wild*. També inclou funcionalitats avançades com la valoració amb estrelles, la selecció automàtica de categories i la gestió de vots.
+Aquest projecte inclou una **API RESTful** i un **frontend interactiu** que simula una **GameBoy** per gestionar informació de **materials** i **monsters** del joc *The Legend of Zelda: Breath of the Wild*. També inclou funcionalitats avançades com la valoració amb estrelles, la selecció automàtica de categories i la gestió de vots.
 
 ---
 ## 📁 Contingut
@@ -46,6 +46,7 @@ El frontend està dissenyat per simular una **GameBoy**, amb botons interactius 
 | **D**      | Eliminar l'element seleccionat (mostra un modal de confirmació).       |
 | **Materials** | Canviar a la vista de materials.                                    |
 | **Monsters**  | Canviar a la vista de monstres.                                     |
+| **Estadistiques**  | Canviar a les estadistiques.                                   |
 
 ---
 
@@ -64,6 +65,7 @@ El frontend està dissenyat per simular una **GameBoy**, amb botons interactius 
 | **Gestió de vots**              | Inclou càlcul de la suma                                                   |
 | **Selecció automàtica**         | La categoria es defineix automàticament segons el context                  |
 | **Camps específics**            | Mostra camps diferents segons si és un material o un monstre               |
+| **Estadistiques**            |  Mostra estadístiques generals en forma de gràfics (fet amb chart,js)              |
 | **Backend**                     | Node.js + Express                                                          |
 | **Documentació interactiva**    | Swagger disponible a [http://localhost:3001/api-docs](http://localhost:3001/api-docs) |
 
