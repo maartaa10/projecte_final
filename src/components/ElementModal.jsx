@@ -8,7 +8,7 @@ function ElementModal({ element, onSave, onClose, category }) {
   const [commonLocations, setCommonLocations] = useState([]);
   const [cookingEffect, setCookingEffect] = useState("");
   const [heartsRecovered, setHeartsRecovered] = useState(0);
-  const [drops, setDrops] = useState([]);
+  const [drop, setDrop] = useState(""); 
   const [idNum, setIdNum] = useState(0);
   const [errors, setErrors] = useState({});
 
@@ -20,7 +20,7 @@ function ElementModal({ element, onSave, onClose, category }) {
       setCommonLocations(element.common_locations || []);
       setCookingEffect(element.cooking_effect || "");
       setHeartsRecovered(element.hearts_recovered || 0);
-      setDrops(element.drops || []);
+      setDrop(element.drops?.[0] || ""); 
       setIdNum(element.id_num || 0);
     }
   }, [element]);
@@ -36,12 +36,8 @@ function ElementModal({ element, onSave, onClose, category }) {
     if (category === "materials" && (isNaN(heartsRecovered) || heartsRecovered < 0)) {
       newErrors.heartsRecovered = "Els cors recuperats han de ser un número positiu.";
     }
-    if (category === "monsters") {
-      if (drops.length === 0) {
-        newErrors.drops = "Els monstres han de tenir almenys un drop.";
-      } else if (drops.some(drop => drop.trim() === "")) {
-        newErrors.drops = "Els drops no poden estar buits.";
-      }
+    if (category === "monsters" && drop.trim() === "") {
+      newErrors.drop = "El drop no pot estar buit.";
     }
     setErrors(newErrors);
     return Object.keys(newErrors).length === 0;
@@ -57,27 +53,12 @@ function ElementModal({ element, onSave, onClose, category }) {
       cooking_effect: category === "materials" ? cookingEffect.trim() : undefined,
       description: description.trim(),
       hearts_recovered: category === "materials" ? heartsRecovered : undefined,
-      drops: category === "monsters" ? drops : undefined,
+      drops: category === "monsters" ? [drop] : undefined, 
       id_num: idNum || Math.floor(Math.random() * 1000000),
       image: image.trim(),
     };
 
     onSave(newElement);
-  };
-
-  const handleAddDrop = () => {
-    setDrops([...drops, ""]);
-  };
-
-  const handleDropChange = (index, value) => {
-    const updatedDrops = [...drops];
-    updatedDrops[index] = value;
-    setDrops(updatedDrops);
-  };
-
-  const handleRemoveDrop = (index) => {
-    const updatedDrops = drops.filter((_, i) => i !== index);
-    setDrops(updatedDrops);
   };
 
   const handleAddLocation = () => {
@@ -161,20 +142,14 @@ function ElementModal({ element, onSave, onClose, category }) {
 
         {category === "monsters" && (
           <div>
-            <label>Drops:</label>
-            {drops.map((drop, index) => (
-              <div key={index} className="drop-item">
-                <input
-                  type="text"
-                  placeholder={`Drop ${index + 1}`}
-                  value={drop}
-                  onChange={(e) => handleDropChange(index, e.target.value)}
-                />
-                <button onClick={() => handleRemoveDrop(index)}>Eliminar</button>
-              </div>
-            ))}
-            <button onClick={handleAddDrop}>Afegir Drop</button>
-            {errors.drops && <p className="error">{errors.drops}</p>}
+            <label>Drop:</label>
+            <input
+              type="text"
+              placeholder="Drop"
+              value={drop}
+              onChange={(e) => setDrop(e.target.value)}
+            />
+            {errors.drop && <p className="error">{errors.drop}</p>}
           </div>
         )}
 
